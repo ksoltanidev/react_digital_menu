@@ -34,6 +34,57 @@
         .buttonClose {
             transition-delay: 0.5s;
         }
+
+        .menuItems {
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0px;
+            padding: 0px;
+
+            list-style: none;
+            font-size: calc(max(3vh, 3vw));
+            text-align: center;
+            li {
+                overflow: hidden;
+                div {
+                    transform: translateY(100%);
+                }
+                &:nth-child(1) {
+                    div {
+                        animation: menuSlideIn 0.5s linear 1.75s forwards;
+                    }
+                }
+                &:nth-child(2) {
+                    div {
+                        animation: menuSlideIn 0.5s linear 1.5s forwards;
+                    }
+                }
+                &:nth-child(3) {
+                    div {
+                        animation: menuSlideIn 0.5s linear 1.25s forwards;
+                    }
+                }
+                &:nth-child(4) {
+                    div {
+                        animation: menuSlideIn 0.5s linear 1s forwards;
+                    }
+                }
+                @keyframes menuSlideIn {
+                    0% {
+                        transform: translateY(100%);
+                    }
+                    100% {
+                        transform: translateY(0);
+                    }
+                }
+            }
+
+            &.closeClass{
+                display: none;
+            }
+        }
     }
 
     .menu {
@@ -57,7 +108,7 @@
         transition-delay: 0.5s;
     }
 
-    .sceneContainer{
+    .sceneContainer {
         position: absolute;
         top: 0;
         right: 0;

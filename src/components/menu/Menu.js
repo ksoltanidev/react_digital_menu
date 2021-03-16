@@ -27,6 +27,11 @@ function Menu() {
         else return styles.buttonClose;
     }
 
+    function getClassOpen(state){
+        if (state) return styles.openClass;
+        else return styles.closeClass;
+    }
+
     const toggleCursor = () => {
         const boundingBox =  menuButtonRef.current.getBoundingClientRect();
 /*         console.log("LEFT " + menuButtonRef.current.getBoundingClientRect().left);
@@ -58,6 +63,12 @@ function Menu() {
                 ref={menuButtonRef}>
                     <Losange />
                 </div>
+                <ul className={[styles.menuItems, getClassOpen(menuOpen)].join(' ')}>
+                    <li><div>A propos de moi</div></li>
+                    <li><div>Mes Projets</div></li>
+                    <li><div>Infos et Contact</div></li>
+                    <li><div>FreeStyle</div></li>
+                </ul>
             </div>
             <div className={[styles.sceneContainer, getSceneOpenClass(menuOpen)].join(' ')}>
             <ThreeScene />
