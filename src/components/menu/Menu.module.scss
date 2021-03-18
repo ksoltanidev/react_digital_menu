@@ -43,13 +43,45 @@
             margin: 0px;
             padding: 0px;
 
+            user-select: none;
             list-style: none;
             font-size: calc(max(3vh, 3vw));
             text-align: center;
             li {
                 overflow: hidden;
+                width: 100vw;
                 div {
+                    position: relative;
+                    width: fit-content;
+                    margin: auto;
                     transform: translateY(100%);
+                    
+                    &::after {
+                        content: "";
+                        transition: right 0.6s linear, left 0.6s linear;
+                        background-color: white;
+                        position: absolute;
+                        top: 0%;
+                        bottom: 0%;
+                        mix-blend-mode: exclusion;
+                        //transform: translateY(100%);
+
+                    }
+
+                    &:hover {
+                        &::after {
+                            right: -50px;
+                            left: -50px;
+                        }
+                    }
+                }                
+                .hoverFromLeft::after{
+                    left: -50px;
+                    right: calc(100% + 25px);
+                }
+                .hoverFromRight::after{
+                    left: calc(100% + 25px);
+                    right: -50px;
                 }
                 &:nth-child(1) {
                     div {
@@ -81,7 +113,7 @@
                 }
             }
 
-            &.closeClass{
+            &.closeClass {
                 display: none;
             }
         }

@@ -10,6 +10,8 @@ import ThreeScene from "../threeScene/ThreeScene";
 function Menu() {
     const [menuOpen, setMenuOpen] = useState(false);
     const [, setCursor] = useContext(CursorContext);
+    const [isMenuItemOnLeft, SetIsMenuItemOnLeft] = useState([true,false,true,false]);
+    const [rerender, setRerender] = useState(true);
     const menuButtonRef = useRef(null);
 
     function getMenuOpenClass(state) {
@@ -51,9 +53,24 @@ function Menu() {
         }));
     };
 
+    function getMenuItemClass(state){
+        if (state) return styles.hoverFromLeft;
+        else return styles.hoverFromRight;
+    }
+
+    function toggleMenuHover(menuIndex){
+        let isMenuItemOnLeft_tmp = isMenuItemOnLeft;
+        isMenuItemOnLeft_tmp[menuIndex] = !isMenuItemOnLeft_tmp[menuIndex];
+        SetIsMenuItemOnLeft(isMenuItemOnLeft_tmp);
+        setRerender(!rerender);
+    }
+
     return (
         <div className={styles.menuContainer}>
             <div className={[styles.menu, getMenuOpenClass(menuOpen)].join(' ')}>
+            </div>
+            <div className={[styles.sceneContainer, getSceneOpenClass(menuOpen)].join(' ')}>
+            <ThreeScene /> 
             </div>
             <div className={styles.content}>
                 <div className={[styles.menuButton, getContentOpenClass(menuOpen)].join(' ')}
@@ -64,15 +81,13 @@ function Menu() {
                     <Losange />
                 </div>
                 <ul className={[styles.menuItems, getClassOpen(menuOpen)].join(' ')}>
-                    <li><div>A propos de moi</div></li>
-                    <li><div>Mes Projets</div></li>
-                    <li><div>Infos et Contact</div></li>
-                    <li><div>FreeStyle</div></li>
+                    <li><div className={getMenuItemClass(isMenuItemOnLeft[0])} onMouseOver={() => toggleMenuHover(0)}>A PROPOS DE MOI</div></li>
+                    <li><div className={getMenuItemClass(isMenuItemOnLeft[1])} onMouseOver={() => toggleMenuHover(1)}>MES PROJETS</div></li>
+                    <li><div className={getMenuItemClass(isMenuItemOnLeft[2])} onMouseOver={() => toggleMenuHover(2)}>INFOS ET CONTACT</div></li>
+                    <li><div className={getMenuItemClass(isMenuItemOnLeft[3])} onMouseOver={() => toggleMenuHover(3)}>FREESTYLE</div></li>
                 </ul>
             </div>
-            <div className={[styles.sceneContainer, getSceneOpenClass(menuOpen)].join(' ')}>
-            <ThreeScene />
-            </div>
+
         </div>
     );
 }
