@@ -4,6 +4,8 @@ import styles from './Menu.module.scss';
 
 import Losange from '../losange/losange';
 import ThreeScene from "../threeScene/ThreeScene";
+import {Link} from "react-router-dom";
+  
 
 
 
@@ -94,10 +96,10 @@ function Menu() {
             </div>
             <div className={styles.content}>
                 <ul className={[styles.menuItems, getClassOpen(menuOpen)].join(' ')}>
-                    <li className={getMenuItemsOpenClass(menuOpen)}><div className={getMenuItemClass(isMenuItemOnLeft[0])} onMouseOver={() => toggleMenuHover(0)}>A PROPOS DE MOI</div></li>
-                    <li className={getMenuItemsOpenClass(menuOpen)}><div className={getMenuItemClass(isMenuItemOnLeft[1])} onMouseOver={() => toggleMenuHover(1)}>MES PROJETS</div></li>
-                    <li className={getMenuItemsOpenClass(menuOpen)}><div className={getMenuItemClass(isMenuItemOnLeft[2])} onMouseOver={() => toggleMenuHover(2)}>INFOS ET CONTACT</div></li>
-                    <li className={getMenuItemsOpenClass(menuOpen)}><div className={getMenuItemClass(isMenuItemOnLeft[3])} onMouseOver={() => toggleMenuHover(3)}>FREESTYLE</div></li>
+                    <li className={getMenuItemsOpenClass(menuOpen)}><Link to="/aboutme" style={{ textDecoration: 'none' }}><div className={getMenuItemClass(isMenuItemOnLeft[0])} onMouseOver={() => toggleMenuHover(0)}>A PROPOS DE MOI</div></Link></li>
+                    <li className={getMenuItemsOpenClass(menuOpen)}><Link to="/portofolio" style={{ textDecoration: 'none' }}><div className={getMenuItemClass(isMenuItemOnLeft[1])} onMouseOver={() => toggleMenuHover(1)}>MES PROJETS</div></Link></li>
+                    <li className={getMenuItemsOpenClass(menuOpen)}><Link to="/contacts" style={{ textDecoration: 'none' }}><div className={getMenuItemClass(isMenuItemOnLeft[2])} onMouseOver={() => toggleMenuHover(2)}>INFOS ET CONTACT</div></Link></li>
+                    <li className={getMenuItemsOpenClass(menuOpen)}><Link to="/freestyle" style={{ textDecoration: 'none' }}><div className={getMenuItemClass(isMenuItemOnLeft[3])} onMouseOver={() => toggleMenuHover(3)}>FREESTYLE</div></Link></li>
                 </ul>
                 <div className={[styles.menuButton, getContentOpenClass(menuOpen)].join(' ')}
                 onClick={() => setMenuOpen(!menuOpen)}
