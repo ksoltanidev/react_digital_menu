@@ -11,7 +11,7 @@ function Cursor() {
     let positiontmp = {x: 0, y: 0};
     let mousePosition = {x: 0, y: 0};
     let cursorRotateDeg = 0;
-    const easeRate = 0.2;
+    const easeRate = 0.3;
   
     useEffect(() => {
         addEventListeners();
